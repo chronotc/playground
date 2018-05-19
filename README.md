@@ -14,3 +14,14 @@ Solution #1
 `git merge-base master <branch-name>`
 
 Has issues with intermediate merges as it will take the latest merge commit on the branch. This works fine if people rebase (make it as part of workflow)
+
+Solution #2 (This is what we want)
+
+https://stackoverflow.com/questions/1527234/finding-a-branch-point-with-git
+
+
+```shell
+diff -u <(git rev-list --first-parent [branch]) \
+             <(git rev-list --first-parent master) | \
+     sed -ne 's/^ //p' | head -1
+```
