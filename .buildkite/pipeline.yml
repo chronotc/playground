@@ -1,0 +1,10 @@
+steps:
+  - label: Trigger pipelines
+    command: echo "hello"
+    plugins:
+      chronotc/monorepo-diff-buildkite-plugin/tree/feature/initial-setup:
+          diff: "git diff --name-only HEAD~1"
+          watch:
+            - path: "hello"
+              config:
+                trigger: "The pipeline slug you want to trigger when foo service changes"
